@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Non-exhaustive plotting sanity checks &mdash; crispy 1.0.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API" href="../API.html" />
+    <link rel="prev" title="Basic coordinate testing" href="plot_CoordChecks.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> crispy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">crispy Example Gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_GettingStarted.html">Quick Start Guide to crispy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_DataWrapperUsage.html">Examples Using the Main Data Wrappers from crispy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_CoordChecks.html">Basic coordinate testing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Non-exhaustive plotting sanity checks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../API.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">crispy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">crispy Example Gallery</a> &raquo;</li>
+      <li>Non-exhaustive plotting sanity checks</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/auto_examples/plot_Permutations.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-permutations-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="non-exhaustive-plotting-sanity-checks">
+<span id="sphx-glr-auto-examples-plot-permutations-py"></span><h1>Non-exhaustive plotting sanity checks<a class="headerlink" href="#non-exhaustive-plotting-sanity-checks" title="Permalink to this heading"></a></h1>
+<p>The example seeks to test most combination of plot arguments as a smoke test to
+catch likely bugs. It isn’t a substitute for proper testing, but all I have time
+for now.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">crispy</span> <span class="kn">import</span> <span class="n">CRISP</span><span class="p">,</span> <span class="n">CRISPWideband</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span> <span class="o">=</span> <span class="n">CRISP</span><span class="p">(</span><span class="s2">&quot;example_data/2014/crisp_l2_20140906_152724_6563_r00447.fits&quot;</span><span class="p">)</span>
+<span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">crisp</span><span class="o">.</span><span class="n">from_lonlat</span><span class="p">(</span><span class="o">-</span><span class="mi">720</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">crisp</span><span class="p">[:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_001.png" srcset="../_images/sphx_glr_plot_Permutations_001.png" alt="2014-09-06T16:53:39.174 H I 6563 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_stokes</span><span class="p">(</span><span class="n">stokes</span><span class="o">=</span><span class="s2">&quot;I&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_002.png" srcset="../_images/sphx_glr_plot_Permutations_002.png" alt="2014-09-06T16:53:39.174 H I 6563 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">(</span><span class="n">air</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_003.png" srcset="../_images/sphx_glr_plot_Permutations_003.png" alt="2014-09-06T16:53:39.174 H I 6563 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_004.png" srcset="../_images/sphx_glr_plot_Permutations_004.png" alt="2014-09-06T16:53:39.174 H I 6563 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">(</span><span class="n">air</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_005.png" srcset="../_images/sphx_glr_plot_Permutations_005.png" alt="2014-09-06T16:53:39.174 H I 6563 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_006.png" srcset="../_images/sphx_glr_plot_Permutations_006.png" alt="2014-09-06T16:53:39.174 H I 6563 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_007.png" srcset="../_images/sphx_glr_plot_Permutations_007.png" alt="2014-09-06T16:53:39.174 H I 6563 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+    <span class="n">crisp</span><span class="p">[:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_stokes</span><span class="p">(</span><span class="n">stokes</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_008.png" srcset="../_images/sphx_glr_plot_Permutations_008.png" alt="2014-09-06T16:53:39.174 λ=6564.58Å (Δλ = -0.0Å)" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="s2">&quot;pix&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_009.png" srcset="../_images/sphx_glr_plot_Permutations_009.png" alt="2014-09-06T16:53:39.174 λ=6564.58Å (Δλ = -0.0Å)" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="s2">&quot;arcsec&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_010.png" srcset="../_images/sphx_glr_plot_Permutations_010.png" alt="2014-09-06T16:53:39.174 λ=6564.58Å (Δλ = -0.0Å)" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">400</span><span class="p">:</span><span class="mi">500</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_011.png" srcset="../_images/sphx_glr_plot_Permutations_011.png" alt="2014-09-06T16:53:39.174 λ=6564.58Å (Δλ = -0.0Å)" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">400</span><span class="p">:</span><span class="mi">500</span><span class="p">]</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_012.png" srcset="../_images/sphx_glr_plot_Permutations_012.png" alt="2014-09-06T16:53:39.174 λ=6564.58Å (Δλ = -0.0Å)" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span> <span class="o">=</span> <span class="n">CRISP</span><span class="p">(</span><span class="s2">&quot;example_data/2014/ca_00025.zarr&quot;</span><span class="p">)</span>
+<span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">crisp</span><span class="o">.</span><span class="n">from_lonlat</span><span class="p">(</span><span class="mi">507</span><span class="p">,</span> <span class="mi">264</span><span class="p">)</span>
+<span class="n">crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_013.png" srcset="../_images/sphx_glr_plot_Permutations_013.png" alt="2014-03-29T17:53:53.066 λ=8544.39Å (Δλ = -0.13Å)" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_014.png" srcset="../_images/sphx_glr_plot_Permutations_014.png" alt="2014-03-29T17:53:53.066 Ca II 8542 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_stokes</span><span class="p">(</span><span class="n">stokes</span><span class="o">=</span><span class="s2">&quot;IQU&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_015.png" srcset="../_images/sphx_glr_plot_Permutations_015.png" alt="2014-03-29T17:53:53.066 Ca II 8542 Å Stokes I, Q, U" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">(</span><span class="n">air</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_016.png" srcset="../_images/sphx_glr_plot_Permutations_016.png" alt="2014-03-29T17:53:53.066 Ca II 8542 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_017.png" srcset="../_images/sphx_glr_plot_Permutations_017.png" alt="2014-03-29T17:53:53.066 Ca II 8542 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">(</span><span class="n">air</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_018.png" srcset="../_images/sphx_glr_plot_Permutations_018.png" alt="2014-03-29T17:53:53.066 Ca II 8542 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_019.png" srcset="../_images/sphx_glr_plot_Permutations_019.png" alt="2014-03-29T17:53:53.066 Ca II 8542 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_020.png" srcset="../_images/sphx_glr_plot_Permutations_020.png" alt="2014-03-29T17:53:53.066 Ca II 8542 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_021.png" srcset="../_images/sphx_glr_plot_Permutations_021.png" alt="2014-03-29T17:53:53.066 λ=8544.39Å (Δλ = -0.13Å)" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="s2">&quot;pix&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_022.png" srcset="../_images/sphx_glr_plot_Permutations_022.png" alt="2014-03-29T17:53:53.066 λ=8544.39Å (Δλ = -0.13Å)" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="s2">&quot;arcsec&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_023.png" srcset="../_images/sphx_glr_plot_Permutations_023.png" alt="2014-03-29T17:53:53.066 λ=8544.17Å (Δλ = -0.35Å)" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">200</span><span class="p">:</span><span class="mi">250</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_024.png" srcset="../_images/sphx_glr_plot_Permutations_024.png" alt="2014-03-29T17:53:53.066 λ=8544.39Å (Δλ = -0.13Å)" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">400</span><span class="p">:</span><span class="mi">500</span><span class="p">]</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_025.png" srcset="../_images/sphx_glr_plot_Permutations_025.png" alt="2014-03-29T17:53:53.066 λ=8544.39Å (Δλ = -0.13Å)" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crispnonu</span> <span class="o">=</span> <span class="n">CRISP</span><span class="p">(</span><span class="s2">&quot;example_data/2017/ca_00001.zarr&quot;</span><span class="p">)</span>
+<span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">crispnonu</span><span class="o">.</span><span class="n">from_lonlat</span><span class="p">(</span><span class="mi">510</span><span class="p">,</span> <span class="o">-</span><span class="mi">265</span><span class="p">)</span>
+<span class="n">crispnonu</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_026.png" srcset="../_images/sphx_glr_plot_Permutations_026.png" alt="2017-09-06T09:04:45.591 Ca II 8542 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><p>The conversion is incorrect as the wavelengths were originally provided in air.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crispnonu</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">(</span><span class="n">air</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_027.png" srcset="../_images/sphx_glr_plot_Permutations_027.png" alt="2017-09-06T09:04:45.591 Ca II 8542 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crispnonu</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_028.png" srcset="../_images/sphx_glr_plot_Permutations_028.png" alt="2017-09-06T09:04:45.591 Ca II 8542 Å Stokes I [DNs]" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+    <span class="n">crispnonu</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_stokes</span><span class="p">(</span><span class="n">stokes</span><span class="o">=</span><span class="s2">&quot;IQ&quot;</span><span class="p">)</span>
+
+<span class="n">crispnonu</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_stokes</span><span class="p">(</span><span class="n">stokes</span><span class="o">=</span><span class="s2">&quot;IQ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_029.png" srcset="../_images/sphx_glr_plot_Permutations_029.png" alt="2017-09-06T09:04:45.591 Ca II 8542 Å Stokes I, Q" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crispwideband</span> <span class="o">=</span> <span class="n">CRISPWideband</span><span class="p">(</span><span class="s2">&quot;example_data/2017/wideband/ca_00001.zarr&quot;</span><span class="p">)</span>
+<span class="n">crispwideband</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_030.png" srcset="../_images/sphx_glr_plot_Permutations_030.png" alt="2017-09-06T09:04:45.591 Ca II 8542 Å (wideband)" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crispwideband</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="s2">&quot;pix&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_031.png" srcset="../_images/sphx_glr_plot_Permutations_031.png" alt="2017-09-06T09:04:45.591 Ca II 8542 Å (wideband)" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crispwideband</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="s2">&quot;arcsec&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_Permutations_032.png" srcset="../_images/sphx_glr_plot_Permutations_032.png" alt="2017-09-06T09:04:45.591 Ca II 8542 Å (wideband)" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  11.720 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-permutations-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/77537de27dac372ce90519f2af2ba1d3/plot_Permutations.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_Permutations.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/da9696381a0f873bcc849229a0a0815a/plot_Permutations.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_Permutations.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_CoordChecks.html" class="btn btn-neutral float-left" title="Basic coordinate testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../API.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, John A. Armstrong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

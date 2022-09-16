@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic coordinate testing &mdash; crispy 1.0.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Non-exhaustive plotting sanity checks" href="plot_Permutations.html" />
+    <link rel="prev" title="Examples Using the Main Data Wrappers from crispy" href="plot_DataWrapperUsage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> crispy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">crispy Example Gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_GettingStarted.html">Quick Start Guide to crispy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_DataWrapperUsage.html">Examples Using the Main Data Wrappers from crispy</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Basic coordinate testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_Permutations.html">Non-exhaustive plotting sanity checks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../API.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">crispy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">crispy Example Gallery</a> &raquo;</li>
+      <li>Basic coordinate testing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/auto_examples/plot_CoordChecks.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-coordchecks-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="basic-coordinate-testing">
+<span id="sphx-glr-auto-examples-plot-coordchecks-py"></span><h1>Basic coordinate testing<a class="headerlink" href="#basic-coordinate-testing" title="Permalink to this heading"></a></h1>
+<p>The example seeks to test most combination of plot arguments as a smoke test to
+catch likely bugs. It isn’t a substitute for proper testing, but all I have time
+for now.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">crispy</span> <span class="kn">import</span> <span class="n">CRISP</span><span class="p">,</span> <span class="n">CRISPWideband</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span> <span class="o">=</span> <span class="n">CRISP</span><span class="p">(</span><span class="s2">&quot;example_data/2014/crisp_l2_20140906_152724_6563_r00447.fits&quot;</span><span class="p">)</span>
+<span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">crisp</span><span class="o">.</span><span class="n">from_lonlat</span><span class="p">(</span><span class="o">-</span><span class="mi">720</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">crisp</span><span class="p">[:,</span> <span class="mi">10</span><span class="p">:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">from_lonlat</span><span class="p">(</span><span class="o">-</span><span class="mi">720</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">:]</span><span class="o">.</span><span class="n">from_lonlat</span><span class="p">(</span><span class="o">-</span><span class="mi">720</span><span class="p">,</span> <span class="o">-</span><span class="mi">300</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">crisp</span><span class="o">.</span><span class="n">to_lonlat</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">crisp</span><span class="p">[:,</span> <span class="mi">10</span><span class="p">:,</span> <span class="o">-</span><span class="mi">10</span><span class="p">:]</span><span class="o">.</span><span class="n">to_lonlat</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">:]</span><span class="o">.</span><span class="n">to_lonlat</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>934 912
+(-719.9999894180801, -300.0029996639827)
+(-720.5699900183827, -300.0029997031279)
+(-719.9999894180801, -300.0029996639827)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crispnonu</span> <span class="o">=</span> <span class="n">CRISP</span><span class="p">(</span><span class="s2">&quot;example_data/2017/ca_00001.zarr&quot;</span><span class="p">)</span>
+<span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">crispnonu</span><span class="o">.</span><span class="n">from_lonlat</span><span class="p">(</span><span class="mi">510</span><span class="p">,</span> <span class="o">-</span><span class="mi">265</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">crispnonu</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">10</span><span class="p">:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">from_lonlat</span><span class="p">(</span><span class="mi">510</span><span class="p">,</span> <span class="o">-</span><span class="mi">265</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">crispnonu</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">:]</span><span class="o">.</span><span class="n">from_lonlat</span><span class="p">(</span><span class="mi">510</span><span class="p">,</span> <span class="o">-</span><span class="mi">265</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">crispnonu</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">23</span><span class="p">:]</span><span class="o">.</span><span class="n">from_lonlat</span><span class="p">(</span><span class="mi">510</span><span class="p">,</span> <span class="o">-</span><span class="mi">265</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">-</span><span class="mi">23</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">crispnonu</span><span class="o">.</span><span class="n">to_lonlat</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">crispnonu</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">10</span><span class="p">:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">to_lonlat</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">crispnonu</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">:]</span><span class="o">.</span><span class="n">to_lonlat</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">crispnonu</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">23</span><span class="p">:]</span><span class="o">.</span><span class="n">to_lonlat</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">-</span><span class="mi">23</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>-46 257
+(510.0279889823888, -264.9759991773243)
+(510.0279889823888, -264.9759991773243)
+(510.0279889823888, -264.9759991773243)
+(510.0279889823888, -264.9759991773243)
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.715 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-coordchecks-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/e238cbeaf6bf401de20d9de418f98f50/plot_CoordChecks.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_CoordChecks.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/4ea577831f6d511c6213fe8cb3cda587/plot_CoordChecks.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_CoordChecks.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_DataWrapperUsage.html" class="btn btn-neutral float-left" title="Examples Using the Main Data Wrappers from crispy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_Permutations.html" class="btn btn-neutral float-right" title="Non-exhaustive plotting sanity checks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, John A. Armstrong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

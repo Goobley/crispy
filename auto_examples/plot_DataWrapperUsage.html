@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examples Using the Main Data Wrappers from crispy &mdash; crispy 1.0.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Basic coordinate testing" href="plot_CoordChecks.html" />
+    <link rel="prev" title="Quick Start Guide to crispy" href="plot_GettingStarted.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> crispy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">crispy Example Gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_GettingStarted.html">Quick Start Guide to crispy</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Examples Using the Main Data Wrappers from crispy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#crisp">CRISP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crispnonu">CRISPNonU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crispwideband">CRISPWideband</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="plot_CoordChecks.html">Basic coordinate testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_Permutations.html">Non-exhaustive plotting sanity checks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../API.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">crispy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">crispy Example Gallery</a> &raquo;</li>
+      <li>Examples Using the Main Data Wrappers from crispy</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/auto_examples/plot_DataWrapperUsage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-datawrapperusage-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="examples-using-the-main-data-wrappers-from-crispy">
+<span id="data-wrap-ex"></span><span id="sphx-glr-auto-examples-plot-datawrapperusage-py"></span><h1>Examples Using the Main Data Wrappers from crispy<a class="headerlink" href="#examples-using-the-main-data-wrappers-from-crispy" title="Permalink to this heading"></a></h1>
+<p>Here, we provide a brief introduction on how to use the main data structures
+defined in <code class="docutils literal notranslate"><span class="pre">crispy.crisp</span></code>. Specifically, these examples will cover the
+<code class="docutils literal notranslate"><span class="pre">CRISP</span></code>, <code class="docutils literal notranslate"><span class="pre">CRISPNonU</span></code>, and <code class="docutils literal notranslate"><span class="pre">CRISPWideband</span></code> structures.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">crispy</span> <span class="kn">import</span> <span class="n">CRISP</span><span class="p">,</span> <span class="n">CRISPWideband</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="crisp">
+<h2>CRISP<a class="headerlink" href="#crisp" title="Permalink to this heading"></a></h2>
+<p>To demonstrate the CRISP class we use an example of a CRISP observation from
+the M1.1 solar flare SOL20140906T17:09 observed by SST/CRISP in
+H:math:<cite>alpha</cite> and Ca II 8542. The data is publicly avaiable through the
+F-CHROMA project <a class="reference external" href="https://star.pst.qub.ac.uk/wiki/doku.php/public/solarflares/start">here</a>. Below
+we show the data for H <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span> <span class="o">=</span> <span class="n">CRISP</span><span class="p">(</span><span class="s2">&quot;example_data/2014/crisp_l2_20140906_152724_6563_r00447.fits&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">crisp</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>       CRISP Observation
+       ------------------
+       2014-09-06 16:53:39.174
+
+       Observed: H I 6563
+       Centre wavelength [Å]: 6564.58
+       Wavelengths sampled: 15 ([6563.18399967 6563.38399971 6563.58399976 6563.78399981 6563.98399986
+6564.1839999  6564.38399995 6564.584      6564.78400005 6564.9840001
+6565.18400014 6565.38400019 6565.58400024 6565.78400029 6565.98400033] Angstrom)
+       Pointing [arcsec] (HPLN, HPLT): (-730.032, -313.398)
+       Shape: [15, 1398, 1473]
+</pre></div>
+</div>
+<p>The data structures use slicing derived from astropy’s <a class="reference external" href="https://docs.astropy.org/en/stable/nddata/">NDData</a> meaning the objects can be
+directly sliced to produce new objects of just the slice e.g. for only looking
+at the far blue wing data in our observation</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">crisp</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>CRISP Observation
+------------------
+2014-09-06 16:53:39.174
+
+Observed: H I 6563
+Centre wavelength [Å]: 6564.58
+Wavelengths sampled: 15 (6563.183999666214 Angstrom)
+Pointing [arcsec] (HPLN, HPLT): (-730.032, -313.398)
+Shape: [1398, 1473]
+</pre></div>
+</div>
+<p>This is also the easiest way to use the plotting methods. For this
+observation, to view an image at a specific wavelength we would use the
+<code class="docutils literal notranslate"><span class="pre">intensity_map</span></code> instance method as shown below for the line core of the
+H <span class="math notranslate nohighlight">\(\alpha\)</span> observation</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_DataWrapperUsage_001.png" srcset="../_images/sphx_glr_plot_DataWrapperUsage_001.png" alt="2014-09-06T16:53:39.174 λ=6564.58Å (Δλ = -0.0Å)" class = "sphx-glr-single-img"/><p>We can then use slicing and the <code class="docutils literal notranslate"><span class="pre">plot_spectrum</span></code> instance method to plot the
+spectrum at a certain spatial point. Firstly though to identify the slice we
+need we use the <code class="docutils literal notranslate"><span class="pre">from_lonlat</span></code> instance method, in this example we take the
+point <span class="math notranslate nohighlight">\((-720'', -310'')\)</span> in the Helioprojective plane:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are complimentary instance methods <code class="docutils literal notranslate"><span class="pre">from_lonlat</span></code> and
+<code class="docutils literal notranslate"><span class="pre">to_lonlat</span></code> which convert coordinates to/from the Helioprojective frame.
+The format of the Helioprojective coordinates are <strong>always</strong> given in the
+format (longitude, latitude) while image plane coordinates are <strong>always</strong>
+given in (y,x) pixels. This is to allow the direct indexing of the objects
+via the image plane corrdinates while maintaining the Helioprojective (and
+other physical coordinate systems) convention of (longitude, latitude).</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">crisp</span><span class="o">.</span><span class="n">from_lonlat</span><span class="p">(</span><span class="o">-</span><span class="mi">720</span><span class="p">,</span> <span class="o">-</span><span class="mi">310</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>759 912
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crisp</span><span class="p">[:,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">plot_spectrum</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_DataWrapperUsage_002.png" srcset="../_images/sphx_glr_plot_DataWrapperUsage_002.png" alt="2014-09-06T16:53:39.174 H I 6563 Å Stokes I [DNs]" class = "sphx-glr-single-img"/></section>
+<section id="crispnonu">
+<h2>CRISPNonU<a class="headerlink" href="#crispnonu" title="Permalink to this heading"></a></h2>
+<p>For the CRISPNonU class, we choose an imaging spectropolarimetric Ca II 8542
+observation of the X2.2 solar flare SOL20170906T09:10.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crispnonu</span> <span class="o">=</span> <span class="n">CRISP</span><span class="p">(</span><span class="s2">&quot;example_data/2017/ca_00001.zarr&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">crispnonu</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>       CRISP Observation
+       ------------------
+       2017-09-06 09:04:45.591
+
+       Observed: Ca II 8542
+       Centre wavelength [Å]: 8544.44
+       Wavelengths sampled: 11 ([8541.3 8541.5 8541.7 8541.8 8541.9 8542.  8542.1 8542.2 8542.3 8542.5
+8542.7] Angstrom)
+       Pointing [arcsec] (HPLN, HPLT): (523.598, -233.293)
+       Shape: [4, 11, 977, 985]
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">intensity_map</span></code> and <code class="docutils literal notranslate"><span class="pre">plot_spectrum</span></code> methods will also work here with
+the correct slicing – that is, the object will need to be sliced twice for
+the <code class="docutils literal notranslate"><span class="pre">intensity_map</span></code> instance method and thrice for the <code class="docutils literal notranslate"><span class="pre">plot_spectrum</span></code>
+instance method. The main difference from the CRISPNonU class can be seen in
+the wavelengths sampled section: the wavelengths are sampled non-uniformly but
+the class deals with this for us. Here, we will show the polarimetric instance
+methods (which also exist in the <code class="docutils literal notranslate"><span class="pre">CRISP</span></code> class). Firstly is <code class="docutils literal notranslate"><span class="pre">stokes_map</span></code>
+for the line core:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crispnonu</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">stokes_map</span><span class="p">(</span><span class="n">stokes</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_DataWrapperUsage_003.png" srcset="../_images/sphx_glr_plot_DataWrapperUsage_003.png" alt="Stokes I, Stokes Q, Stokes U, Stokes V" class = "sphx-glr-single-img"/><p>The polarimetric plotting methods take a keyword argument <code class="docutils literal notranslate"><span class="pre">stokes</span></code> which is
+a string specifying which of the Stokes parameters the user would like to
+plot. In the example above we have used “all” to plot the maps of all of the
+Stokes parameters at line centre. However, if the user would like to only
+display Stokes I, Q and V this can be accomplished by setting <code class="docutils literal notranslate"><span class="pre">stokes</span> <span class="pre">=</span>
+<span class="pre">&quot;IQV&quot;</span></code>.</p>
+<p>We can then identify a point to view the Stokes profiles using the
+<code class="docutils literal notranslate"><span class="pre">from_lonlat</span></code> instance method as before and plot the Stokes profiles using
+the <code class="docutils literal notranslate"><span class="pre">plot_stokes</span></code> instance method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">crispnonu</span><span class="o">.</span><span class="n">from_lonlat</span><span class="p">(</span><span class="mi">510</span><span class="p">,</span> <span class="o">-</span><span class="mi">260</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>38 257
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crispnonu</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">257</span><span class="p">]</span><span class="o">.</span><span class="n">plot_stokes</span><span class="p">(</span><span class="n">stokes</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_DataWrapperUsage_004.png" srcset="../_images/sphx_glr_plot_DataWrapperUsage_004.png" alt="2017-09-06T09:04:45.591 Ca II 8542 Å All  Stokes" class = "sphx-glr-single-img"/></section>
+<section id="crispwideband">
+<h2>CRISPWideband<a class="headerlink" href="#crispwideband" title="Permalink to this heading"></a></h2>
+<p>For the CRISPWideband class, we use the complimentary wideband Ca II 8542 for
+the observation shown as an example for the CRISPNonU class, above.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crispwideband</span> <span class="o">=</span> <span class="n">CRISPWideband</span><span class="p">(</span><span class="s2">&quot;example_data/2017/wideband/ca_00001.zarr&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">crispwideband</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>CRISP Wideband Context Image
+------------------
+2017-09-06 09:04:45.591
+
+Observed: Ca II 8542
+Pointing: (523.598, -233.293)
+Shape: [977, 985]
+</pre></div>
+</div>
+<p>The CRISPWideband class has one useful plotting instance method, that is
+<code class="docutils literal notranslate"><span class="pre">intensity_map</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crispwideband</span><span class="o">.</span><span class="n">intensity_map</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_DataWrapperUsage_005.png" srcset="../_images/sphx_glr_plot_DataWrapperUsage_005.png" alt="2017-09-06T09:04:45.591 Ca II 8542 Å (wideband)" class = "sphx-glr-single-img"/><p>CRISPWideband can also utilise the <code class="docutils literal notranslate"><span class="pre">from_lonlat</span></code> and <code class="docutils literal notranslate"><span class="pre">to_lonlat</span></code> instance
+methods.</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.967 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-datawrapperusage-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/e0c6b957431be6f131777b5f0dd2551a/plot_DataWrapperUsage.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_DataWrapperUsage.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/432fa1946af3923a9977a21ff7f2ed07/plot_DataWrapperUsage.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_DataWrapperUsage.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_GettingStarted.html" class="btn btn-neutral float-left" title="Quick Start Guide to crispy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_CoordChecks.html" class="btn btn-neutral float-right" title="Basic coordinate testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, John A. Armstrong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

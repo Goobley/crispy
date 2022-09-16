@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inversion Wrapper &mdash; crispy 1.0.2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sg_gallery-rendered-html.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Visualisers" href="visualisation.html" />
+    <link rel="prev" title="Data Structures" href="datastructs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> crispy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">crispy Example Gallery</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="API.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datastructs.html">Data Structures</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Inversion Wrapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Visualisers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="io.html">I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spectral.html">Spectrum Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utilities</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">crispy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="API.html">API</a> &raquo;</li>
+      <li>Inversion Wrapper</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/inversions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="inversion-wrapper">
+<span id="inv-wrap"></span><h1>Inversion Wrapper<a class="headerlink" href="#inversion-wrapper" title="Permalink to this heading"></a></h1>
+<p>The following code is useful for working with inversion data from <a class="reference external" href="https://iopscience.iop.org/article/10.3847/1538-4357/ab07b4">RADYNVERSION</a> (but could be adapted to work with other inversion codes fairly easily).</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crispy.inversions.</span></span><span class="sig-name descname"><span class="pre">Inversion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ObjDict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wcs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">WCS</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">InversionSlicingMixin</span></code></p>
+<p>Class for transporting and using the inversions obtained from RADYNVERSION.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em><em> or </em><em>ObjDict</em>) – The file of the inversion. Can be either a zarr file path or a
+<code class="docutils literal notranslate"><span class="pre">crispy.utils.ObjDict</span></code> object.</p></li>
+<li><p><strong>header</strong> (<em>dict</em>) – The header information of the associated observation.</p></li>
+<li><p><strong>z</strong> (<em>str</em><em> or </em><em>numpy.ndarray</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – The height grid that the atmospheric parameters are calculated at. This
+can be either a zarr file path or a numpy.ndarray. Defaults to None
+which assumes that <code class="docutils literal notranslate"><span class="pre">filename</span></code> contains a path “/atmos/z” when
+<code class="docutils literal notranslate"><span class="pre">filename</span></code> is a string or an entry with key <code class="docutils literal notranslate"><span class="pre">z</span></code> when <code class="docutils literal notranslate"><span class="pre">filename</span> <span class="pre">is</span> <span class="pre">a</span>
+<span class="pre">``crispy.utils.ObjDict</span></code> object.</p></li>
+<li><p><strong>wcs</strong> (<em>astropy.wcs.WCS</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – The WCS of the observation associated with the inversions. Default is
+None, the WCS is inferred from the inversion and header.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.ne">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ne</span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.ne" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the electron number density in the inversion.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.temp">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">temp</span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.temp" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the electron temperature in the inversion.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.vel">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vel</span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.vel" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the bulk velocity flow in the inversion.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.ne_err">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ne_err</span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.ne_err" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the errors on the electron number density.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.temp_err">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">temp_err</span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.temp_err" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the errors on the electron temperature.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.vel_err">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vel_err</span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.vel_err" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the errors on the bulk velocity flow.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.plot_ne">
+<span class="sig-name descname"><span class="pre">plot_ne</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.plot_ne" title="Permalink to this definition"></a></dt>
+<dd><p>Class method to plot the electron number density for a given location
+within the field-of-view. This works by slicing the <code class="docutils literal notranslate"><span class="pre">Inversion</span></code>
+object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>eb</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether or not to plot the median absolute deviation (MAD) for the
+electron number density as errorbars. Default is False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.plot_temp">
+<span class="sig-name descname"><span class="pre">plot_temp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.plot_temp" title="Permalink to this definition"></a></dt>
+<dd><p>Class method to plot the electron temperature for a given point in the
+field-of-view. This is done by slicing the <code class="docutils literal notranslate"><span class="pre">Inversion</span></code> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>eb</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether or not to plot the median absolute deviation (MAD) of the
+estimated electron temperatures as errorbars. Default is False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.plot_vel">
+<span class="sig-name descname"><span class="pre">plot_vel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.plot_vel" title="Permalink to this definition"></a></dt>
+<dd><p>Class method to plot the bulk velocity for a certain point within the
+field-of-view. This is done using a slice of the <code class="docutils literal notranslate"><span class="pre">Inversion</span></code> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>eb</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether or not to plot the median absolute deviation (MAD) of the
+bulk velocity as errorbars. Default is False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.plot_params">
+<span class="sig-name descname"><span class="pre">plot_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.plot_params" title="Permalink to this definition"></a></dt>
+<dd><p>Class method to plot the electron number density, electron temperature,
+and bulk velocity for a certain point within the field-of-view. This is
+done using a slice of the <code class="docutils literal notranslate"><span class="pre">Inversion</span></code> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>eb</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether or not to plot the median absolute deviation (MAD) for each
+estimated quantity as errorbars. Default is False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.ne_map">
+<span class="sig-name descname"><span class="pre">ne_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.ne_map" title="Permalink to this definition"></a></dt>
+<dd><p>Creates an electron density map at a specified height denoted in the
+<code class="docutils literal notranslate"><span class="pre">Inversion</span></code> slice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>frame</strong> (<em>str</em><em>, </em><em>optional</em>) – The frame to plot the map in. Default is None therefore uses the WCS
+frame. Other option is “pix” to plot in the pixel frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.temp_map">
+<span class="sig-name descname"><span class="pre">temp_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.temp_map" title="Permalink to this definition"></a></dt>
+<dd><p>Creates an electron temperature map at a specified height denoted in the
+<code class="docutils literal notranslate"><span class="pre">Inversion</span></code> slice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>frame</strong> (<em>str</em><em>, </em><em>optional</em>) – The frame to plot the map in. Default is None therefore uses the WCS
+frame. Other option is “pix” to plot in the pixel frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.vel_map">
+<span class="sig-name descname"><span class="pre">vel_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.vel_map" title="Permalink to this definition"></a></dt>
+<dd><p>Creates a bulk velocity map at a specified height denoted in the
+<code class="docutils literal notranslate"><span class="pre">Inversion</span></code> slice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>frame</strong> (<em>str</em><em>, </em><em>optional</em>) – The frame to plot the map in. Default is None therefore uses the WCS
+frame. Other option is “pix” to plot in the pixel frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.params_map">
+<span class="sig-name descname"><span class="pre">params_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.params_map" title="Permalink to this definition"></a></dt>
+<dd><p>Creates maps of electron number density, electron temperature, and bulk
+velocity at a specified height denoted in the <code class="docutils literal notranslate"><span class="pre">Inversion</span></code> slice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>frame</strong> (<em>str</em><em>, </em><em>optional</em>) – The frame to plot the map in. Default is None therefore uses the WCS
+frame. Other option is “pix” to plot in the pixel frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.to_lonlat">
+<span class="sig-name descname"><span class="pre">to_lonlat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.to_lonlat" title="Permalink to this definition"></a></dt>
+<dd><p>This function will take a y, x coordinate in pixel space and map it to
+Helioprojective Longitude, Helioprojective Latitude according to the
+transform in the WCS. This will return the Helioprojective coordinates
+in units of arcseconds. Note this function takes arguments in the order
+of numpy indexing (y,x) but returns a pair longitude/latitude which is
+Solar-X, Solar-Y.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y</strong> (<em>int</em>) – The y-index to be converted to Helioprojective Latitude.</p></li>
+<li><p><strong>x</strong> (<em>int</em>) – The x-index to be converted to Helioprojective Longitude.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crispy.inversions.Inversion.from_lonlat">
+<span class="sig-name descname"><span class="pre">from_lonlat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference external" href="https://github.com/bionictoucan/crispy/blob/main/crispy/inversions.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crispy.inversions.Inversion.from_lonlat" title="Permalink to this definition"></a></dt>
+<dd><p>This function takes a Helioprojective Longitude, Helioprojective
+Latitude pair and converts them to the y, x indices to index the object
+correctly. The function takes its arguments in the order Helioprojective
+Longitude, Helioprojective Latitude but returns the indices in the (y,x)
+format so that the output of this function can be used to directly index
+the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lon</strong> (<em>float</em>) – The Helioprojective Longitude in arcseconds.</p></li>
+<li><p><strong>lat</strong> (<em>float</em>) – The Helioprojective Latitude in arcseconds.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="datastructs.html" class="btn btn-neutral float-left" title="Data Structures" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="visualisation.html" class="btn btn-neutral float-right" title="Visualisers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, John A. Armstrong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
